@@ -1,0 +1,31 @@
+{
+  "articles": [
+    {
+      "slug": "pre-action-yard-livery",
+      "title": "Resolutor Legal Support publishes a proportionate pre\u2011action framework for yard and livery disputes",
+      "type": "firm",
+      "topic": null,
+      "date": "2026-04-15",
+      "image": "assets/insights-featured.jpg",
+      "featured": true
+    },
+    {
+      "slug": "lba-first-steps-equestrian",
+      "title": "When a letter before action lands: first steps for operators (equestrian example)",
+      "type": "article",
+      "topic": "Mediation and early resolution",
+      "date": "2026-03-28",
+      "image": "assets/insights-thumb-1.jpg",
+      "featured": false
+    },
+    {
+      "slug": "podcast-vet-reports-warranties",
+      "title": "Podcast: vet reports, warranties and cooling off\u2014what buyers and sellers miss",
+      "type": "podcast",
+      "topic": "Bloodstock and sales",
+      "date": "2026-03-12",
+      "image": "assets/insights-thumb-2.jpg",
+      "featured": false
+    }
+  ]
+}
