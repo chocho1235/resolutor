@@ -1,0 +1,5 @@
+# Dev fallback only — production robots.txt is generated in dist/ by `npm run build` (see scripts/build-sitemap.mjs).
+User-agent: *
+Allow: /
+
+Sitemap: https://www.resolutor.co.uk/sitemap.xml

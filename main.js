@@ -209,8 +209,13 @@ function assetUrl(relPath) {
   return `${base}/${relPath.replace(/^\//, "")}`;
 }
 
+function articleImageSrc(path) {
+  if (/^https?:\/\//i.test(path)) return path;
+  return assetUrl(path);
+}
+
 const ARTICLE_TYPE_META = {
-  firm: { label: "Firm news", bar: "insights-meta__bar--firm" },
+  firm: { label: "News", bar: "insights-meta__bar--firm" },
   article: { label: "Article", bar: "insights-meta__bar--article" },
   podcast: { label: "Podcast", bar: "insights-meta__bar--podcast" },
 };
@@ -226,8 +231,8 @@ function formatArticleDate(iso) {
 function createFeaturedArticleCard(item) {
   const meta = ARTICLE_TYPE_META[item.type] || ARTICLE_TYPE_META.article;
   const { datetime, text } = formatArticleDate(item.date);
-  const href = assetUrl(`articles/${item.slug}.html`);
-  const imgSrc = assetUrl(item.image);
+  const href = assetUrl(`articles/${item.slug}`);
+  const imgSrc = articleImageSrc(item.image);
 
   const article = document.createElement("article");
   article.className = "insights-card insights-card--featured";
@@ -271,8 +276,8 @@ function createFeaturedArticleCard(item) {
 function createCompactArticleCard(item) {
   const meta = ARTICLE_TYPE_META[item.type] || ARTICLE_TYPE_META.article;
   const { datetime, text } = formatArticleDate(item.date);
-  const href = assetUrl(`articles/${item.slug}.html`);
-  const imgSrc = assetUrl(item.image);
+  const href = assetUrl(`articles/${item.slug}`);
+  const imgSrc = articleImageSrc(item.image);
 
   const article = document.createElement("article");
   article.className = "insights-card insights-card--compact";
@@ -365,7 +370,7 @@ function showArticlesFeedError(nodes) {
     p.className = "newsroom-feed__error";
     p.append("We could not load the article list. ");
     const a = document.createElement("a");
-    a.href = assetUrl("newsroom.html");
+    a.href = assetUrl("newsroom");
     a.textContent = "Open the newsroom";
     p.appendChild(a);
     p.append(".");

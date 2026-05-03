@@ -2,20 +2,20 @@
   "articles": [
     {
       "slug": "pre-action-yard-livery",
-      "title": "Resolutor Legal Support publishes a proportionate pre\u2011action framework for yard and livery disputes",
+      "title": "How to handle a yard or livery dispute before it gets out of hand",
       "type": "firm",
       "topic": null,
       "date": "2026-04-15",
-      "image": "assets/insights-featured.jpg",
+      "image": "https://images.pexels.com/photos/7567600/pexels-photo-7567600.jpeg",
       "featured": true
     },
     {
       "slug": "lba-first-steps-equestrian",
-      "title": "When a letter before action lands: first steps for operators (equestrian example)",
+      "title": "When a letter before action lands: first steps for operators",
       "type": "article",
       "topic": "Mediation and early resolution",
       "date": "2026-03-28",
-      "image": "assets/insights-thumb-1.jpg",
+      "image": "https://images.pexels.com/photos/3612885/pexels-photo-3612885.jpeg",
       "featured": false
     },
     {
