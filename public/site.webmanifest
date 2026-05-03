@@ -1,0 +1,17 @@
+{
+  "name": "Resolutor Legal Support",
+  "short_name": "Resolutor",
+  "description": "Independent legal information and document support for England and Wales.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#020617",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}

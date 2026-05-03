@@ -33,8 +33,32 @@
   <body>
     <div class="shell">
       <div class="masthead">
+        <div class="mobile-nav__backdrop" hidden></div>
+
         <div class="masthead__content">
-          <a class="masthead__logo-link" href="/" aria-label="Resolutor Legal Support — home">
+          <div class="masthead__mobile-bar">
+            <button
+              type="button"
+              class="mobile-nav__toggle"
+              aria-expanded="false"
+              aria-controls="site-menu-panel"
+            >
+              <span class="mobile-nav__toggle-bars" aria-hidden="true"></span>
+              <span class="visually-hidden">Open menu</span>
+            </button>
+            <a class="masthead__logo-link masthead__logo-link--bar" href="/" aria-label="Resolutor Legal Support — home">
+              <img
+                class="masthead__logo masthead__logo--bar"
+                src="assets/logo.svg"
+                alt="Resolutor Legal Support"
+                width="443"
+                height="82"
+                loading="eager"
+              />
+            </a>
+            <span class="mobile-nav__bar-spacer" aria-hidden="true"></span>
+          </div>
+          <a class="masthead__logo-link masthead__logo-link--desktop" href="/" aria-label="Resolutor Legal Support — home">
             <img
               class="masthead__logo"
               src="assets/logo.svg"
@@ -45,8 +69,15 @@
             />
           </a>
 
-          <header class="top">
+          <header class="top top--site-menu" id="site-menu-panel" aria-labelledby="site-menu-panel-title">
             <div class="top__actions">
+              <div class="mobile-nav__drawer-head">
+                <p class="mobile-nav__drawer-title" id="site-menu-panel-title">Menu</p>
+                <button type="button" class="mobile-nav__close" aria-label="Close menu">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+
               <nav class="nav" aria-label="Primary">
                 <a class="nav__has-sub" href="/#capabilities"
                   >Capabilities <span class="nav__chev" aria-hidden="true"></span
@@ -62,7 +93,7 @@
               <div class="masthead__contact">
                 <a class="masthead__email" href="mailto:legal@resolutor.co.uk">legal@resolutor.co.uk</a>
                 <span class="masthead__contact-sep" aria-hidden="true">·</span>
-                <a class="masthead__phone" href="tel:+441424605973">01424 605 973</a>
+                <a class="masthead__phone" href="tel:+442080580645">020 8058 0645</a>
               </div>
               <button type="button" class="search" aria-label="Search">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -232,34 +263,46 @@
           </section>
 
           <div class="about-page__band" id="about-costs" aria-labelledby="about-costs-heading">
-            <section class="about-page__section about-page__section--in-band">
-              <h2 class="about-page__heading" id="about-costs-heading">Costs and proportionate paths</h2>
-              <p class="about-page__prose">
-                Disputes become expensive when positions harden, correspondence balloons and the routine next step is
-                always court. Our work is aimed at helping <strong>both parties</strong> see the issues clearly at an
-                early stage&mdash;so you can explore resolution, mediation or a firm but proportionate pre&#8209;action
-                position <strong>before</strong> fees and adversarial spend spiral.
-              </p>
-              <p class="about-page__prose">
-                For <strong>businesses</strong>, we normally work on a <strong>bespoke dispute resolution service on a
-                monthly rolling basis</strong>, so proportionate support is built into how you operate rather than bought
-                ad hoc for each flashpoint. Individuals and other clients can still talk to us about their situation; the
-                right structure depends on the matter.
-              </p>
-              <p class="about-page__prose">
-                Traditional solicitor firms often <strong>cannot avoid</strong> operating within a model where formal
-                steps, court-facing risk management and professional indemnity expectations mean that work is scoped and
-                charged in ways that <strong>escalate cost</strong> even when both sides would prefer a cheaper
-                off&#8209;ramp. We sit outside that framework as a consultancy: we focus on plain&#8209;English analysis,
-                document support and realistic options. That can mean the other side receives material they can respond
-                to without immediately running up their own solicitor time at full tilt&mdash;often improving the chance of an
-                early settlement or a narrower dispute if regulated solicitors are needed later.
-              </p>
-              <p class="about-page__prose">
-                We do not replace solicitors where reserved work, court proceedings or regulated representation is
-                required. The point is to help you—and often everyone involved—<strong>avoid unnecessary cost</strong>
-                by keeping the pathway proportionate for as long as that remains sensible.
-              </p>
+            <section class="about-page__section about-page__section--in-band about-page__section--costs-with-lottie">
+              <div class="about-page__costs-lottie-row">
+                <div class="about-page__costs-copy">
+                  <h2 class="about-page__heading" id="about-costs-heading">Costs and proportionate paths</h2>
+                  <p class="about-page__prose">
+                    Disputes become expensive when positions harden, correspondence balloons and the routine next step is
+                    always court. Our work is aimed at helping <strong>both parties</strong> see the issues clearly at an
+                    early stage&mdash;so you can explore resolution, mediation or a firm but proportionate pre&#8209;action
+                    position <strong>before</strong> fees and adversarial spend spiral.
+                  </p>
+                  <p class="about-page__prose">
+                    For <strong>businesses</strong>, we normally work on a <strong>bespoke dispute resolution service on a
+                    monthly rolling basis</strong>, so proportionate support is built into how you operate rather than bought
+                    ad hoc for each flashpoint. Individuals and other clients can still talk to us about their situation; the
+                    right structure depends on the matter.
+                  </p>
+                  <p class="about-page__prose">
+                    Traditional solicitor firms often <strong>cannot avoid</strong> operating within a model where formal
+                    steps, court-facing risk management and professional indemnity expectations mean that work is scoped and
+                    charged in ways that <strong>escalate cost</strong> even when both sides would prefer a cheaper
+                    off&#8209;ramp. We sit outside that framework as a consultancy: we focus on plain&#8209;English analysis,
+                    document support and realistic options. That can mean the other side receives material they can respond
+                    to without immediately running up their own solicitor time at full tilt&mdash;often improving the chance of an
+                    early settlement or a narrower dispute if regulated solicitors are needed later.
+                  </p>
+                  <p class="about-page__prose">
+                    We do not replace solicitors where reserved work, court proceedings or regulated representation is
+                    required. The point is to help you—and often everyone involved—<strong>avoid unnecessary cost</strong>
+                    by keeping the pathway proportionate for as long as that remains sensible.
+                  </p>
+                </div>
+                <div class="about-page__costs-lottie" aria-hidden="true">
+                  <dotlottie-wc
+                    src="https://lottie.host/d8dc6b34-574b-4800-b72a-6d158ddb77f1/QBtUu3glOs.lottie"
+                    style="width: 300px; height: 300px"
+                    autoplay
+                    loop
+                  ></dotlottie-wc>
+                </div>
+              </div>
             </section>
           </div>
 
@@ -370,6 +413,7 @@
         </div>
       </footer>
     </div>
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js" type="module"></script>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

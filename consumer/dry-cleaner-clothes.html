@@ -14,11 +14,14 @@
     <meta property="og:title" content="If your clothes have been lost or damaged by a dry cleaner | Resolutor Legal Support" />
     <meta property="og:description" content="Dry cleaner disputes: tickets, bailment and valuation. Resolutor Legal Support." />
     <meta property="og:url" content="https://www.resolutor.co.uk/consumer/dry-cleaner-clothes" />
-    <meta property="og:image" content="https://www.resolutor.co.uk/og-image.jpg" />
+    <meta property="og:image" content="https://images.pexels.com/photos/8731037/pexels-photo-8731037.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="800" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="If your clothes have been lost or damaged by a dry cleaner | Resolutor Legal Support" />
     <meta name="twitter:description" content="Dry cleaner disputes: tickets, bailment and valuation. Resolutor Legal Support." />
-    <meta name="twitter:image" content="https://www.resolutor.co.uk/og-image.jpg" />
+    <meta name="twitter:image" content="https://images.pexels.com/photos/8731037/pexels-photo-8731037.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200" />
+    <link rel="preconnect" href="https://images.pexels.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,8 +33,32 @@
   <body>
     <div class="shell">
       <div class="masthead">
+        <div class="mobile-nav__backdrop" hidden></div>
+
         <div class="masthead__content">
-          <a class="masthead__logo-link" href="/" aria-label="Resolutor Legal Support — home">
+          <div class="masthead__mobile-bar">
+            <button
+              type="button"
+              class="mobile-nav__toggle"
+              aria-expanded="false"
+              aria-controls="site-menu-panel"
+            >
+              <span class="mobile-nav__toggle-bars" aria-hidden="true"></span>
+              <span class="visually-hidden">Open menu</span>
+            </button>
+            <a class="masthead__logo-link masthead__logo-link--bar" href="/" aria-label="Resolutor Legal Support — home">
+              <img
+                class="masthead__logo masthead__logo--bar"
+                src="../assets/logo.svg"
+                alt="Resolutor Legal Support"
+                width="443"
+                height="82"
+                loading="eager"
+              />
+            </a>
+            <span class="mobile-nav__bar-spacer" aria-hidden="true"></span>
+          </div>
+          <a class="masthead__logo-link masthead__logo-link--desktop" href="/" aria-label="Resolutor Legal Support — home">
             <img
               class="masthead__logo"
               src="../assets/logo.svg"
@@ -41,8 +68,15 @@
               loading="eager"
             />
           </a>
-          <header class="top">
+          <header class="top top--site-menu" id="site-menu-panel" aria-labelledby="site-menu-panel-title">
             <div class="top__actions">
+              <div class="mobile-nav__drawer-head">
+                <p class="mobile-nav__drawer-title" id="site-menu-panel-title">Menu</p>
+                <button type="button" class="mobile-nav__close" aria-label="Close menu">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+
               <nav class="nav" aria-label="Primary">
                 <a class="nav__has-sub" href="/#capabilities"
                   >Capabilities <span class="nav__chev" aria-hidden="true"></span
@@ -58,7 +92,7 @@
               <div class="masthead__contact">
                 <a class="masthead__email" href="mailto:legal@resolutor.co.uk">legal@resolutor.co.uk</a>
                 <span class="masthead__contact-sep" aria-hidden="true">·</span>
-                <a class="masthead__phone" href="tel:+441424605973">01424 605 973</a>
+                <a class="masthead__phone" href="tel:+442080580645">020 8058 0645</a>
               </div>
               <button type="button" class="search" aria-label="Search">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -71,31 +105,85 @@
         </div>
       </div>
       <main class="page-main">
-        <article class="about-page consumer-page consumer-page--article">
-          <nav class="consumer-page__breadcrumb" aria-label="Breadcrumb">
-            <ol class="consumer-page__breadcrumb-list">
+        <article class="about-page consumer-page consumer-page--article consumer-guide">
+          <nav class="consumer-page__breadcrumb consumer-guide__breadcrumb" aria-label="Breadcrumb">
+            <ol class="consumer-page__breadcrumb-list consumer-guide__breadcrumb-list">
               <li class="consumer-page__breadcrumb-item">
-                <a href="/" class="consumer-page__breadcrumb-link">Home</a>
+                <a href="/" class="consumer-page__breadcrumb-link consumer-guide__crumb">
+                  <span class="consumer-guide__crumb-icon" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V9.5z" />
+                    </svg>
+                  </span>
+                  Home
+                </a>
               </li>
               <li class="consumer-page__breadcrumb-item">
-                <a href="/consumer" class="consumer-page__breadcrumb-link">Consumer</a>
+                <a href="/consumer" class="consumer-page__breadcrumb-link consumer-guide__crumb">Consumer</a>
               </li>
               <li class="consumer-page__breadcrumb-item consumer-page__breadcrumb-item--current" aria-current="page">
-                <span class="consumer-page__breadcrumb-current">If your clothes have been lost or damaged by a dry cleaner</span>
+                <span class="consumer-page__breadcrumb-current consumer-guide__crumb consumer-guide__crumb--current"
+                  >If your clothes have been lost or damaged by a dry cleaner</span
+                >
               </li>
             </ol>
           </nav>
-          <header class="consumer-page__article-header">
-            <h1 class="about-page__title about-page__title--page">If your clothes have been lost or damaged by a dry cleaner</h1>
-          </header>
-          <div class="about-page__body">
-            <p class="about-page__prose">
+
+          <header class="consumer-guide__hero">
+            <div class="consumer-guide__hero-copy">
+              <p class="consumer-guide__eyebrow">
+                <span class="consumer-guide__eyebrow-dot" aria-hidden="true"></span>
+                Consumer resource
+              </p>
+              <h1 class="consumer-guide__title about-page__title about-page__title--page">
+                If your clothes have been lost or damaged by a dry cleaner
+              </h1>
+              <p class="consumer-guide__lede">
                 Dry cleaning disputes usually turn on ticket terms, bailment and realistic valuations. We help you frame a
                 claim for loss or damage with clear evidence and a proportionate ask.
               </p>
-            <p class="about-page__prose consumer-page__back">
-              <a href="/consumer">All consumer resources</a>
-            </p>
+            </div>
+            <figure class="consumer-guide__hero-figure">
+              <img
+                src="https://images.pexels.com/photos/8731037/pexels-photo-8731037.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1200"
+                alt="Law book with scales of justice on a wooden desk (stock photograph)."
+                width="1200"
+                height="800"
+                loading="eager"
+                decoding="async"
+                class="consumer-guide__hero-img"
+              />
+              <figcaption class="consumer-guide__hero-caption">Photo: Pexels (stock) — law book and scales of justice.</figcaption>
+            </figure>
+          </header>
+
+          <div class="consumer-guide__shell">
+            <nav class="consumer-guide__toc" aria-labelledby="consumer-guide-toc-heading">
+              <p id="consumer-guide-toc-heading" class="consumer-guide__toc-heading">On this page</p>
+              <ol class="consumer-guide__toc-list">
+                <li><a href="#consumer-more">All consumer resources</a></li>
+              </ol>
+            </nav>
+            <div class="consumer-guide__main">
+              <div class="consumer-guide__callout" role="note">
+                <div class="consumer-guide__callout-icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <div class="consumer-guide__callout-body">
+                  <p class="consumer-guide__callout-title">Jurisdiction &amp; nature of this page</p>
+                  <p class="consumer-guide__callout-text">
+                    This page is <strong>general information only</strong>, not legal advice. We are <strong>not a law firm</strong>.
+                  </p>
+                </div>
+              </div>
+              <div class="about-page__body consumer-guide__body">
+                <p id="consumer-more" class="about-page__prose consumer-page__back consumer-guide__back">
+                  <a href="/consumer">All consumer resources</a>
+                </p>
+              </div>
+            </div>
           </div>
         </article>
       </main>

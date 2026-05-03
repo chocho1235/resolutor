@@ -405,3 +405,182 @@ async function initArticlesFeed() {
 }
 
 initArticlesFeed();
+
+/** Slide-out primary navigation (max-width 640px) */
+const mobileNavMq = window.matchMedia("(max-width: 640px)");
+
+function initMobileNav() {
+  const toggle = document.querySelector(".mobile-nav__toggle");
+  const panel = document.getElementById("site-menu-panel");
+  const backdrop = document.querySelector(".mobile-nav__backdrop");
+  const closeBtn = document.querySelector(".mobile-nav__close");
+  const label = toggle?.querySelector(".visually-hidden");
+  if (!toggle || !panel || !backdrop) return;
+
+  let open = false;
+
+  function applyInert() {
+    if (mobileNavMq.matches) {
+      if (open) panel.removeAttribute("inert");
+      else panel.setAttribute("inert", "");
+    } else {
+      panel.removeAttribute("inert");
+    }
+  }
+
+  function sync() {
+    const active = open && mobileNavMq.matches;
+    document.body.classList.toggle("mobile-nav-open", active);
+    toggle.setAttribute("aria-expanded", String(active));
+    if (active) {
+      backdrop.removeAttribute("hidden");
+      document.body.style.overflow = "hidden";
+      if (label) label.textContent = "Close menu";
+    } else {
+      backdrop.setAttribute("hidden", "");
+      document.body.style.overflow = "";
+      open = false;
+      if (label) label.textContent = "Open menu";
+    }
+    applyInert();
+  }
+
+  function close(opts = { focusToggle: true }) {
+    open = false;
+    sync();
+    if (mobileNavMq.matches && opts.focusToggle) toggle.focus({ preventScroll: true });
+  }
+
+  toggle.addEventListener("click", () => {
+    if (!mobileNavMq.matches) return;
+    open = !open;
+    sync();
+  });
+
+  closeBtn?.addEventListener("click", () => close());
+
+  backdrop.addEventListener("click", () => close());
+
+  panel.addEventListener("click", (e) => {
+    if (!mobileNavMq.matches) return;
+    if (e.target.closest("a[href]")) close({ focusToggle: false });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && open && mobileNavMq.matches) close();
+  });
+
+  mobileNavMq.addEventListener("change", () => {
+    if (!mobileNavMq.matches) open = false;
+    sync();
+  });
+
+  sync();
+}
+
+initMobileNav();
+
+/** After ~30s of visible reading on long-form pages, offer “carry on reading” + subscribe (email / newsroom). */
+const READING_SUBSCRIBE_KEY = "resolutorReadingSubscribeDismissed";
+
+function initReadingSubscribePrompt() {
+  const longForm = document.querySelector("article.consumer-guide, article.article-page");
+  if (!longForm) return;
+  if (sessionStorage.getItem(READING_SUBSCRIBE_KEY) === "1") return;
+
+  const TICK_MS = 250;
+  const THRESHOLD_MS = 30_000;
+  let visibleMs = 0;
+  let intervalId = null;
+  let shown = false;
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  const wrap = document.createElement("div");
+  wrap.className = "reading-subscribe";
+  wrap.setAttribute("role", "region");
+  wrap.setAttribute("aria-label", "Updates and further reading");
+  wrap.hidden = true;
+
+  const inner = document.createElement("div");
+  inner.className = "reading-subscribe__inner";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.type = "button";
+  closeBtn.className = "reading-subscribe__close";
+  closeBtn.setAttribute("aria-label", "Dismiss");
+  closeBtn.textContent = "×";
+
+  const title = document.createElement("h2");
+  title.className = "reading-subscribe__title";
+  title.id = "reading-subscribe-title";
+  title.textContent = "Carry on reading";
+
+  const text = document.createElement("p");
+  text.className = "reading-subscribe__text";
+  text.textContent =
+    "Subscribe by email for updates when we publish new guides and newsroom pieces, or browse the newsroom now.";
+
+  const actions = document.createElement("div");
+  actions.className = "reading-subscribe__actions";
+
+  const mail = document.createElement("a");
+  mail.className = "reading-subscribe__btn reading-subscribe__btn--primary";
+  mail.href =
+    "mailto:legal@resolutor.co.uk?subject=" +
+    encodeURIComponent("Subscribe to Resolutor updates") +
+    "&body=" +
+    encodeURIComponent(
+      "Please add me to your mailing list for new consumer guides and articles.\n\n(We will use your email only for that purpose.)",
+    );
+  mail.textContent = "Subscribe by email";
+
+  const news = document.createElement("a");
+  news.className = "reading-subscribe__btn reading-subscribe__btn--secondary";
+  news.href = assetUrl("newsroom");
+  news.textContent = "Newsroom";
+
+  actions.append(mail, news);
+  inner.append(closeBtn, title, text, actions);
+  wrap.appendChild(inner);
+  document.body.appendChild(wrap);
+
+  function dismiss() {
+    sessionStorage.setItem(READING_SUBSCRIBE_KEY, "1");
+    wrap.classList.remove("is-visible");
+    wrap.hidden = true;
+    wrap.remove();
+    if (intervalId != null) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+  }
+
+  closeBtn.addEventListener("click", dismiss);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape" || !wrap.isConnected || wrap.hidden) return;
+    dismiss();
+  });
+
+  function open() {
+    if (shown) return;
+    shown = true;
+    if (intervalId != null) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+    wrap.hidden = false;
+    if (reduceMotion.matches) wrap.classList.add("reading-subscribe--instant");
+    requestAnimationFrame(() => {
+      wrap.classList.add("is-visible");
+    });
+  }
+
+  intervalId = window.setInterval(() => {
+    if (!document.hidden) visibleMs += TICK_MS;
+    if (visibleMs >= THRESHOLD_MS) open();
+  }, TICK_MS);
+}
+
+initReadingSubscribePrompt();
