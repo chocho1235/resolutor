@@ -4,8 +4,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/inject-seo-structured-data-dist.mjs",
     "postbuild": "node scripts/build-sitemap.mjs",
+    "sync:articles-meta": "node scripts/sync-article-source-meta.mjs",
     "preview": "vite preview"
   },
   "devDependencies": {

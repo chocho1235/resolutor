@@ -25,7 +25,7 @@ function swapHead(html, { title, desc, slug, ogImage }) {
     <link rel="canonical" href="${canon}" />
     <meta name="robots" content="index, follow" />
     <meta property="og:locale" content="en_GB" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Resolutor Legal Support" />
     <meta property="og:title" content="${title} | Resolutor Legal Support" />
     <meta property="og:description" content="${desc.replace(/"/g, "&quot;")}" />
