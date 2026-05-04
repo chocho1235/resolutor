@@ -13,8 +13,26 @@ const ARTICLE_ROOT_SEL =
   "main.page-main > article.consumer-guide, main.page-main > article.article-page";
 
 const READ_THRESHOLD_MS = 30_000;
+/** Persisted anonymous preview exhaustion: survives refresh & other articles until the user obtains a session. */
+const ANONYMOUS_READ_LOCK_KEY = "resolutorAnonymousLongformLock";
 
 let client = null;
+
+function isAnonymousReadLocked() {
+  try {
+    return globalThis.localStorage?.getItem(ANONYMOUS_READ_LOCK_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function setAnonymousReadLocked() {
+  try {
+    globalThis.localStorage?.setItem(ANONYMOUS_READ_LOCK_KEY, "1");
+  } catch {
+    /* ignore quota / private mode */
+  }
+}
 
 /** Public URL prefix without trailing slash (empty at site root). */
 export function appBasePath() {
@@ -170,6 +188,8 @@ function showReadGate() {
   const next = `${location.pathname}${location.search}`;
   const loginHref = authLoginHref(next);
   const signupHref = authSignupHref(next);
+  const prefix = appBasePath();
+  const homeHref = prefix ? `${prefix}/` : "/";
 
   const gate = document.createElement("div");
   gate.id = "article-read-gate";
@@ -184,12 +204,12 @@ function showReadGate() {
   const h2 = document.createElement("h2");
   h2.className = "article-read-gate__title";
   h2.id = "article-read-gate-title";
-  h2.textContent = "Sign in to continue reading";
+  h2.textContent = "Log in to continue reading";
 
   const p = document.createElement("p");
   p.className = "article-read-gate__lede";
   p.textContent =
-    "You have reached the open preview limit for this article. Log in or create a free account to keep reading.";
+    "Free reading of our newsroom articles and consumer guides is limited in this browser until you log in or register. That limit has now applied: refreshing or opening another guide will not reset it. Use the homepage link if you prefer to leave.";
 
   const actions = document.createElement("div");
   actions.className = "article-read-gate__actions";
@@ -199,13 +219,23 @@ function showReadGate() {
   inA.href = loginHref;
   inA.textContent = "Log in";
 
-  const upA = document.createElement("a");
-  upA.className = "article-read-gate__btn";
-  upA.href = signupHref;
-  upA.textContent = "Sign up";
+  const homeA = document.createElement("a");
+  homeA.className = "article-read-gate__btn";
+  homeA.href = homeHref;
+  homeA.textContent = "Back to homepage";
 
-  actions.append(inA, upA);
-  panel.append(h2, p, actions);
+  actions.append(inA, homeA);
+
+  const foot = document.createElement("p");
+  foot.className = "article-read-gate__foot";
+  foot.append("Need an account? ");
+  const upA = document.createElement("a");
+  upA.className = "article-read-gate__link";
+  upA.href = signupHref;
+  upA.textContent = "Sign up free";
+  foot.appendChild(upA);
+
+  panel.append(h2, p, actions, foot);
   gate.appendChild(panel);
   document.body.appendChild(gate);
   inA.focus();
@@ -244,7 +274,11 @@ export function initSiteAuthUI() {
   if (sb) {
     sb.auth.onAuthStateChange((_evt, session) => {
       syncAuthBar(session);
-      if (session) removeReadGate();
+      if (session) {
+        removeReadGate();
+      } else if (isAnonymousReadLocked() && getArticleRoot()) {
+        showReadGate();
+      }
     });
     sb.auth.getSession().then(({ data: { session } }) => syncAuthBar(session));
   } else {
@@ -255,15 +289,19 @@ export function initSiteAuthUI() {
 export async function initArticleReadGate() {
   const root = getArticleRoot();
   if (!root) return;
-  if (!isAuthConfigured()) return;
 
   const sb = getSupabaseClient();
-  if (!sb) return;
+  if (sb) {
+    const {
+      data: { session },
+    } = await sb.auth.getSession();
+    if (session) return;
+  }
 
-  const {
-    data: { session },
-  } = await sb.auth.getSession();
-  if (session) return;
+  if (isAnonymousReadLocked()) {
+    showReadGate();
+    return;
+  }
 
   let visibleMs = 0;
   let lastTs = performance.now();
@@ -276,12 +314,22 @@ export async function initArticleReadGate() {
   document.addEventListener("visibilitychange", syncClock, { signal });
 
   let rafId = 0;
-  const stop = () => {
+  let authUnsub = null;
+
+  function stop() {
     ac.abort();
+    authUnsub?.();
+    authUnsub = null;
     cancelAnimationFrame(rafId);
     rafId = 0;
-    document.removeEventListener("keydown", onGateKeydown);
-  };
+  }
+
+  if (sb) {
+    const { data } = sb.auth.onAuthStateChange((_event, sess) => {
+      if (sess) stop();
+    });
+    authUnsub = () => data.subscription.unsubscribe();
+  }
 
   const frame = (ts) => {
     if (!getArticleRoot()) {
@@ -292,9 +340,16 @@ export async function initArticleReadGate() {
       visibleMs += ts - lastTs;
       if (visibleMs >= READ_THRESHOLD_MS) {
         stop();
-        void sb.auth.getSession().then(({ data: { session: s } }) => {
-          if (!s) showReadGate();
-        });
+        void (async () => {
+          if (sb) {
+            const {
+              data: { session: s },
+            } = await sb.auth.getSession();
+            if (s) return;
+          }
+          setAnonymousReadLocked();
+          showReadGate();
+        })();
         return;
       }
     }

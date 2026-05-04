@@ -668,11 +668,12 @@ main {
   line-height: 1.12;
 }
 
-/* Careers — team photo below page title (full frame, natural aspect ratio) */
+/* Careers — team photo below page title (full frame, natural aspect ratio; moderate width, light blur) */
 .careers-hero {
   position: relative;
   width: 100%;
-  margin: 0 0 clamp(1.35rem, 3.2vw, 2rem);
+  max-width: min(34rem, 92vw);
+  margin: 0 auto clamp(1.35rem, 3.2vw, 2rem);
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(2, 6, 23, 0.1);
@@ -684,6 +685,15 @@ main {
   display: block;
   width: 100%;
   height: auto;
+  filter: blur(3px);
+  transform: scale(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .careers-hero__img {
+    filter: blur(1.5px);
+    transform: none;
+  }
 }
 
 .about-page__intro {
@@ -946,7 +956,44 @@ main {
 
 @media (min-width: 768px) {
   .about-page__intro-split {
-    grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, min(380px, 36vw));
+    grid-template-rows: auto auto;
+    align-items: start;
+  }
+
+  /* Lead prose runs down the left; glance + photo stack on the right (about page editorial layout) */
+  .about-page__intro-split .about-page__intro--lead {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: start;
+  }
+
+  .about-page__intro-split .about-page__glance {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .about-page__intro-split .about-page__intro-visual {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: clamp(0.85rem, 2vw, 1.35rem);
+    margin-bottom: 0;
+    justify-self: stretch;
+    width: 100%;
+    max-width: none;
+  }
+
+  .about-page__intro-split > .about-page__intro-visual.careers-hero {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .about-page__intro-split > .about-page__intro-visual .careers-hero__img {
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+    object-position: center 28%;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -3516,6 +3563,29 @@ main {
   margin-top: 0;
 }
 
+.article-page__body table {
+  width: 100%;
+  max-width: min(32rem, 100%);
+  border-collapse: collapse;
+  margin: 0.5rem 0 1.35rem;
+  font-size: clamp(0.875rem, 0.18vw + 0.82rem, 0.95rem);
+  font-variant-numeric: tabular-nums;
+}
+
+.article-page__body th,
+.article-page__body td {
+  border: 1px solid var(--header-rule);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.article-page__body thead th {
+  background: color-mix(in srgb, var(--green-dark) 4.5%, var(--white));
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
 .article-page__body .about-page__prose a {
   color: var(--kelly-deep);
   font-weight: 500;
@@ -3822,6 +3892,23 @@ main {
   color: var(--grey-body);
 }
 
+.consumer-guide__letter-sample {
+  margin: 0.75rem 0 1.15rem;
+  padding: 0.65rem 0 0.65rem 1rem;
+  border-left: 3px solid var(--header-rule);
+  font-size: clamp(0.88rem, 0.2vw + 0.82rem, 0.95rem);
+  line-height: 1.58;
+  color: var(--grey-body);
+}
+
+.consumer-guide__letter-sample p {
+  margin: 0 0 0.45rem;
+}
+
+.consumer-guide__letter-sample p:last-child {
+  margin-bottom: 0;
+}
+
 .consumer-guide__h {
   scroll-margin-top: 5.75rem;
 }
@@ -4072,144 +4159,6 @@ main {
   .consumer-guide__toc-list a {
     transition: none;
   }
-}
-
-/* Long-form reading — “carry on reading / subscribe” prompt (shown from main.js after visible dwell time) */
-.reading-subscribe {
-  position: fixed;
-  left: max(1rem, env(safe-area-inset-left, 0px));
-  right: max(1rem, env(safe-area-inset-right, 0px));
-  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
-  max-width: min(28rem, 100%);
-  margin-inline: auto;
-  z-index: 120;
-  pointer-events: none;
-}
-
-.reading-subscribe:not([hidden]) {
-  pointer-events: auto;
-}
-
-.reading-subscribe__inner {
-  position: relative;
-  padding: 1.05rem 1.2rem 1.15rem;
-  background: var(--green-dark);
-  color: var(--white);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 14px 44px rgba(2, 6, 23, 0.38);
-  transform: translateY(calc(100% + 1.5rem));
-  opacity: 0;
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.35s ease;
-}
-
-.reading-subscribe.is-visible .reading-subscribe__inner {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.reading-subscribe--instant .reading-subscribe__inner {
-  transition: none;
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.reading-subscribe__close {
-  position: absolute;
-  top: 0.45rem;
-  right: 0.45rem;
-  width: 2.25rem;
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  font-size: 1.35rem;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.85);
-  background: transparent;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.reading-subscribe__close:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--white);
-}
-
-.reading-subscribe__close:focus-visible {
-  outline: 2px solid var(--white);
-  outline-offset: 2px;
-}
-
-.reading-subscribe__title {
-  margin: 0 2.25rem 0.45rem 0;
-  font-family: var(--font-hatton);
-  font-size: clamp(1.05rem, 0.35vw + 0.95rem, 1.22rem);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: var(--white);
-}
-
-.reading-subscribe__text {
-  margin: 0 0 0.95rem;
-  font-size: 0.875rem;
-  line-height: 1.55;
-  color: rgba(226, 232, 240, 0.92);
-  max-width: 36ch;
-}
-
-.reading-subscribe__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.65rem;
-  align-items: center;
-}
-
-.reading-subscribe__btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.45rem;
-  padding: 0.45rem 1rem;
-  font-family: var(--font-sans);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-
-.reading-subscribe__btn--primary {
-  color: var(--green-dark);
-  background: var(--white);
-  border: 1px solid var(--white);
-}
-
-.reading-subscribe__btn--primary:hover {
-  background: rgba(255, 255, 255, 0.92);
-}
-
-.reading-subscribe__btn--secondary {
-  color: var(--white);
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-}
-
-.reading-subscribe__btn--secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.reading-subscribe__btn:focus-visible {
-  outline: 2px solid var(--kelly);
-  outline-offset: 2px;
 }
 
 /* Supabase auth bar (injected above .shell) + article read gate */
@@ -4683,4 +4632,22 @@ a.article-read-gate__btn {
 .article-read-gate__btn:focus-visible {
   outline: 2px solid var(--kelly);
   outline-offset: 2px;
+}
+
+.article-read-gate__foot {
+  margin: 0.85rem 0 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--grey-meta);
+}
+
+.article-read-gate__link {
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.article-read-gate__link:hover {
+  text-decoration: underline;
 }

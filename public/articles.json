@@ -1,31 +1,49 @@
 {
   "articles": [
     {
-      "slug": "pre-action-yard-livery",
-      "title": "How to handle a yard or livery dispute before it gets out of hand",
-      "type": "firm",
-      "topic": null,
-      "date": "2026-04-15",
-      "image": "https://images.pexels.com/photos/7567600/pexels-photo-7567600.jpeg",
-      "featured": true
+      "slug": "small-claims-court",
+      "title": "Small claims court: what it is, what it costs, and when it is worth it",
+      "type": "article",
+      "topic": "Court and disputes",
+      "date": "2025-12-03",
+      "image": "https://images.pexels.com/photos/5669602/pexels-photo-5669602.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "featured": false
+    },
+    {
+      "slug": "county-court",
+      "title": "County Court: what it is, what it costs, and when it is worth it",
+      "type": "article",
+      "topic": "Court and disputes",
+      "date": "2025-08-29",
+      "image": "https://images.pexels.com/photos/6077422/pexels-photo-6077422.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "featured": false
+    },
+    {
+      "slug": "ebay-facebook-marketplace-rights",
+      "title": "Buying from a seller on eBay or Facebook Marketplace — do you have any rights at all?",
+      "type": "article",
+      "topic": "Consumer rights",
+      "date": "2025-05-08",
+      "image": "https://images.pexels.com/photos/5076512/pexels-photo-5076512.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "featured": false
     },
     {
       "slug": "lba-first-steps-equestrian",
       "title": "When a letter before action lands: first steps for operators",
       "type": "article",
       "topic": "Mediation and early resolution",
-      "date": "2026-03-28",
-      "image": "https://images.pexels.com/photos/3612885/pexels-photo-3612885.jpeg",
+      "date": "2025-03-22",
+      "image": "https://images.pexels.com/photos/7876093/pexels-photo-7876093.jpeg?auto=compress&cs=tinysrgb&w=1200",
       "featured": false
     },
     {
-      "slug": "podcast-vet-reports-warranties",
-      "title": "Podcast: vet reports, warranties and cooling off\u2014what buyers and sellers miss",
-      "type": "podcast",
-      "topic": "Bloodstock and sales",
-      "date": "2026-03-12",
-      "image": "assets/insights-thumb-2.jpg",
-      "featured": false
+      "slug": "pre-action-yard-livery",
+      "title": "How to handle a yard or livery dispute before it gets out of hand",
+      "type": "article",
+      "topic": "Yard and livery",
+      "date": "2025-01-17",
+      "image": "https://images.pexels.com/photos/7567600/pexels-photo-7567600.jpeg",
+      "featured": true
     }
   ]
 }
