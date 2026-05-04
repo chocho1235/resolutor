@@ -1,3 +1,5 @@
+import { initArticleReadGate, initSiteAuthUI, isAuthConfigured } from "./auth.js";
+
 const section = document.querySelector(".about-band");
 const title = document.querySelector("#about-title");
 const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -484,17 +486,35 @@ initMobileNav();
 const READING_SUBSCRIBE_KEY = "resolutorReadingSubscribeDismissed";
 
 function initReadingSubscribePrompt() {
-  const longForm = document.querySelector("article.consumer-guide, article.article-page");
+  const longForm = document.querySelector(
+    "main.page-main > article.consumer-guide, main.page-main > article.article-page",
+  );
   if (!longForm) return;
-  if (sessionStorage.getItem(READING_SUBSCRIBE_KEY) === "1") return;
+  if (isAuthConfigured()) return;
 
-  const TICK_MS = 250;
+  let dismissed = false;
+  try {
+    dismissed = sessionStorage.getItem(READING_SUBSCRIBE_KEY) === "1";
+  } catch {
+    dismissed = false;
+  }
+  if (dismissed) return;
+
   const THRESHOLD_MS = 30_000;
   let visibleMs = 0;
-  let intervalId = null;
+  let rafId = 0;
+  let lastTs = performance.now();
   let shown = false;
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const dwellAbort = new AbortController();
+  const { signal } = dwellAbort;
+
+  function syncClock() {
+    lastTs = performance.now();
+  }
+
+  document.addEventListener("visibilitychange", syncClock, { signal });
 
   const wrap = document.createElement("div");
   wrap.className = "reading-subscribe";
@@ -545,15 +565,22 @@ function initReadingSubscribePrompt() {
   wrap.appendChild(inner);
   document.body.appendChild(wrap);
 
+  function stopDwellTracking() {
+    dwellAbort.abort();
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+  }
+
   function dismiss() {
-    sessionStorage.setItem(READING_SUBSCRIBE_KEY, "1");
+    try {
+      sessionStorage.setItem(READING_SUBSCRIBE_KEY, "1");
+    } catch {
+      /* ignore */
+    }
     wrap.classList.remove("is-visible");
     wrap.hidden = true;
     wrap.remove();
-    if (intervalId != null) {
-      clearInterval(intervalId);
-      intervalId = null;
-    }
+    stopDwellTracking();
   }
 
   closeBtn.addEventListener("click", dismiss);
@@ -566,10 +593,7 @@ function initReadingSubscribePrompt() {
   function open() {
     if (shown) return;
     shown = true;
-    if (intervalId != null) {
-      clearInterval(intervalId);
-      intervalId = null;
-    }
+    stopDwellTracking();
     wrap.hidden = false;
     if (reduceMotion.matches) wrap.classList.add("reading-subscribe--instant");
     requestAnimationFrame(() => {
@@ -577,10 +601,22 @@ function initReadingSubscribePrompt() {
     });
   }
 
-  intervalId = window.setInterval(() => {
-    if (!document.hidden) visibleMs += TICK_MS;
-    if (visibleMs >= THRESHOLD_MS) open();
-  }, TICK_MS);
+  function dwellFrame(ts) {
+    if (shown || !wrap.isConnected) return;
+    if (!document.hidden) {
+      visibleMs += ts - lastTs;
+      if (visibleMs >= THRESHOLD_MS) {
+        open();
+        return;
+      }
+    }
+    lastTs = ts;
+    rafId = requestAnimationFrame(dwellFrame);
+  }
+
+  rafId = requestAnimationFrame(dwellFrame);
 }
 
+initSiteAuthUI();
+void initArticleReadGate();
 initReadingSubscribePrompt();
