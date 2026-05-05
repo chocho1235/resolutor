@@ -4,12 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <title>Account dashboard | Resolutor Legal Support</title>
-    <meta name="description" content="Manage your Resolutor account and see your subscription status." />
-    <meta name="robots" content="noindex, follow" />
-    <link rel="canonical" href="https://www.resolutor.co.uk/dashboard" />
-    <meta property="og:title" content="Account dashboard | Resolutor Legal Support" />
-    <meta property="og:description" content="Manage your Resolutor account and subscription status." />
+    <title>Contact | Resolutor Legal Support</title>
+    <meta
+      name="description"
+      content="Contact Resolutor Legal Support for practical document support, complaint handling, letters before action, dispute support and solicitor introductions where representation is needed."
+    />
+    <link rel="canonical" href="https://www.resolutor.co.uk/contact" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Resolutor Legal Support" />
+    <meta property="og:title" content="Contact | Resolutor Legal Support" />
+    <meta property="og:description" content="Contact Resolutor Legal Support for practical document support, complaint handling, letters before action, dispute support and solicitor introductions where representation is needed." />
+    <meta property="og:url" content="https://www.resolutor.co.uk/contact" />
+    <meta property="og:image" content="https://www.resolutor.co.uk/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Contact | Resolutor Legal Support" />
+    <meta name="twitter:description" content="Contact Resolutor Legal Support for practical document support, complaint handling, letters before action, dispute support and solicitor introductions where representation is needed." />
+    <meta name="twitter:image" content="https://www.resolutor.co.uk/og-image.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -76,7 +90,7 @@
                   >About us <span class="nav__chev" aria-hidden="true"></span
                 ></a>
                 <a href="/careers">Careers</a>
-                <a href="/contact">Contact</a>
+                <a href="/contact" aria-current="page">Contact</a>
                 <a href="/newsroom">Newsroom</a>
               </nav>
               <div class="masthead__contact">
@@ -96,53 +110,94 @@
       </div>
 
       <main class="page-main">
-        <article class="about-page auth-page" id="dashboard">
-          <header class="about-page__header auth-page__header">
-            <h1 class="about-page__title about-page__title--page">Account dashboard</h1>
-            <p class="auth-page__lead">
-              See your plan status and where to go next. Billing changes are applied to your account by our team after
-              you subscribe or upgrade — this page reflects the tier stored on your sign-in profile.
-            </p>
-          </header>
-
-          <p id="auth-dashboard-unconfigured" class="auth-page__notice" role="status" hidden></p>
-
-          <div id="auth-dashboard-content" class="auth-page__card auth-page__card--dashboard" hidden>
-            <dl class="auth-dashboard__meta">
-              <div>
-                <dt class="auth-dashboard__dt">Signed in as</dt>
-                <dd class="auth-dashboard__dd" id="auth-dashboard-email">—</dd>
-              </div>
-              <div>
-                <dt class="auth-dashboard__dt">Current plan</dt>
-                <dd class="auth-dashboard__dd">
-                  <span id="auth-dashboard-tier" class="auth-dashboard__tier">—</span>
-                </dd>
-              </div>
-            </dl>
-
-            <div id="auth-dashboard-free" class="auth-dashboard__panel" hidden>
-              <p class="auth-dashboard__text">
-                You are on the <strong>free</strong> tier. Explore
-                <a href="/pricing">pricing &amp; services</a> to see paid options, or email
-                <a href="mailto:legal@resolutor.co.uk">legal@resolutor.co.uk</a> if you have already arranged access and
-                your account has not yet been updated.
+        <article class="contact-page" id="contact">
+          <section class="contact-page__hero" aria-labelledby="contact-heading">
+            <div class="contact-page__hero-copy">
+              <p class="contact-page__kicker">Contact</p>
+              <h1 class="about-page__title about-page__title--page" id="contact-heading">
+                Tell us what has happened and what you need next
+              </h1>
+              <p class="contact-page__deck">
+                We help with practical documents, complaint handling, letters before action, pre-action steps, mediation
+                preparation and structured dispute support. If a matter needs regulated representation, we can also help
+                identify suitable solicitor options.
               </p>
             </div>
+            <aside class="contact-page__direct" aria-labelledby="contact-direct-heading">
+              <h2 class="contact-page__direct-title" id="contact-direct-heading">Direct contact</h2>
+              <a class="contact-page__contact-link" href="mailto:legal@resolutor.co.uk">legal@resolutor.co.uk</a>
+              <a class="contact-page__contact-link" href="tel:+442080580645">020 8058 0645</a>
+              <p>
+                Email is usually the best first step because it lets us understand the issue, the deadline and whether it
+                sits within our scope.
+              </p>
+            </aside>
+          </section>
 
-            <div id="auth-dashboard-paid" class="auth-dashboard__panel" hidden>
-              <p class="auth-dashboard__text">
-                Your profile is marked as a <strong>paid</strong> account. For changes to your arrangement or
-                cancellation, use the contact channel agreed in your engagement or write to
-                <a href="mailto:legal@resolutor.co.uk">legal@resolutor.co.uk</a>.
+          <section class="contact-page__grid" aria-label="How to contact us">
+            <article class="contact-page__panel">
+              <p class="contact-page__eyebrow">What to include</p>
+              <h2>Send the useful facts first</h2>
+              <ul class="contact-page__list">
+                <li>Your name and the best way to reply</li>
+                <li>Who the dispute or document is with</li>
+                <li>Key dates, deadlines and any court or complaint references</li>
+                <li>What outcome you are trying to achieve</li>
+              </ul>
+            </article>
+            <article class="contact-page__panel">
+              <p class="contact-page__eyebrow">What we support</p>
+              <h2>Practical next steps</h2>
+              <p>
+                Common enquiries include complaint letters, letters before action, evidence packs, settlement positioning,
+                business dispute retainers and support across defamation, property, agricultural, family and equestrian
+                matters.
+              </p>
+            </article>
+            <article class="contact-page__panel contact-page__panel--dark">
+              <p class="contact-page__eyebrow">Representation</p>
+              <h2>When a solicitor is needed</h2>
+              <p>
+                We are not a law firm and do not conduct reserved legal work. Where a matter falls outside our scope or
+                needs representation, we can help you compare suitable solicitor options before you commit.
+              </p>
+            </article>
+          </section>
+
+          <section class="contact-page__process" aria-labelledby="contact-process-heading">
+            <div>
+              <p class="contact-page__eyebrow">How it works</p>
+              <h2 class="contact-page__section-title" id="contact-process-heading">A short route from enquiry to scope</h2>
+            </div>
+            <ol class="contact-page__steps">
+              <li>
+                <span>01</span>
+                <strong>Send the outline</strong>
+                <p>Give us the facts, the deadline and the documents you already have.</p>
+              </li>
+              <li>
+                <span>02</span>
+                <strong>We check fit</strong>
+                <p>We confirm whether the work is suitable for us, needs a solicitor or needs another route.</p>
+              </li>
+              <li>
+                <span>03</span>
+                <strong>Scope and price</strong>
+                <p>If we can help, we confirm the assumptions, deliverables and fee before work starts.</p>
+              </li>
+            </ol>
+          </section>
+
+          <section class="contact-page__cta" aria-labelledby="contact-cta-heading">
+            <div>
+              <p class="contact-page__eyebrow">Start here</p>
+              <h2 class="contact-page__section-title" id="contact-cta-heading">Ready to send the outline?</h2>
+              <p>
+                A short, factual email is enough. You do not need to write a legal submission before you contact us.
               </p>
             </div>
-
-            <p class="auth-page__fineprint auth-dashboard__fineprint">
-              Plan labels come from your account metadata (<code>subscription_tier</code> set to <code>paid</code> for
-              paying subscribers). If something looks wrong after you have subscribed, ask us to refresh your profile.
-            </p>
-          </div>
+            <a class="contact-page__button" href="mailto:legal@resolutor.co.uk">Email Resolutor</a>
+          </section>
         </article>
       </main>
 
@@ -175,7 +230,7 @@
                 <li><a href="/about">About us</a></li>
                 <li><a href="/pricing">Pricing &amp; services</a></li>
                 <li><a href="/consumer">Consumer</a></li>
-                <li><a href="/newsroom">Newsroom</a></li>
+                <li><a href="/newsroom">News &amp; insights</a></li>
               </ul>
             </nav>
 
@@ -185,7 +240,7 @@
                 <li><a href="/#capabilities">Capabilities</a></li>
                 <li><a href="/#about">About overview</a></li>
                 <li><a href="/careers">Careers</a></li>
-              <li><a href="/contact">Contact</a></li>
+                <li><a href="/contact" aria-current="page">Contact</a></li>
               </ul>
             </nav>
 
@@ -213,6 +268,5 @@
       </footer>
     </div>
     <script type="module" src="/main.js"></script>
-    <script type="module" src="/dashboard-page.js"></script>
   </body>
 </html>

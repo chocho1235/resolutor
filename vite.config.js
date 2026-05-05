@@ -105,6 +105,7 @@ export default defineConfig({
         about: path.resolve(__dirname, "about.html"),
         pricing: path.resolve(__dirname, "pricing.html"),
         careers: path.resolve(__dirname, "careers.html"),
+        contact: path.resolve(__dirname, "contact.html"),
         consumer: path.resolve(__dirname, "consumer.html"),
         newsroom: path.resolve(__dirname, "newsroom.html"),
         login: path.resolve(__dirname, "login.html"),

@@ -82,6 +82,7 @@ add("/", "index.html", "1.0", "weekly");
 add("/about", "about.html", "0.9", "monthly");
 add("/pricing", "pricing.html", "0.9", "monthly");
 add("/careers", "careers.html", "0.8", "monthly");
+add("/contact", "contact.html", "0.85", "monthly");
 add("/consumer", "consumer.html", "0.9", "weekly");
 add("/newsroom", "newsroom.html", "0.85", "weekly");
 
