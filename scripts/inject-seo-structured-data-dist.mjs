@@ -7,8 +7,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   ensureArticlePublishedMeta,
+  ensurePublishedMetaForDate,
   ensureOgImageDims,
   loadArticleMeta,
+  loadSeoPageMeta,
 } from "./seo-meta-utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,6 +19,7 @@ const dist = path.join(root, "dist");
 const SITE = (process.env.SITE_ORIGIN || "https://www.resolutor.co.uk").replace(/\/$/, "");
 
 const articleMeta = loadArticleMeta(root);
+const seoPageMeta = loadSeoPageMeta(root);
 
 function decodeEntities(s) {
   return s
@@ -62,18 +65,62 @@ function stripBrand(title) {
 }
 
 function stripOldLd(html) {
-  return html.replace(
-    /<script[^>]*id=["']resolutor-structured-data["'][^>]*>[\s\S]*?<\/script>\s*\n?/gi,
-    "",
-  );
+  return html
+    .replace(
+      /<script[^>]*id=["']resolutor-structured-data["'][^>]*>[\s\S]*?<\/script>\s*\n?/gi,
+      "",
+    )
+    .replace(
+      /<script[^>]*id=["']resolutor-breadcrumb-data["'][^>]*>[\s\S]*?<\/script>\s*\n?/gi,
+      "",
+    )
+    .replace(
+      /<script[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>\s*\n?/gi,
+      "",
+    );
 }
 
-function injectLd(html, articleLd) {
+function injectLd(html, id, data) {
   const blob = `\n    <script id="resolutor-structured-data" type="application/ld+json">${JSON.stringify(
-    articleLd,
+    data,
   )}<\/script>`;
+  const finalBlob = id === "resolutor-structured-data"
+    ? blob
+    : `\n    <script id="${id}" type="application/ld+json">${JSON.stringify(data)}<\/script>`;
   const insertBefore = /<\/head>/i;
-  return html.replace(insertBefore, `${blob}\n  </head>`);
+  return html.replace(insertBefore, `${finalBlob}\n  </head>`);
+}
+
+function routeFromCanonical(canonical) {
+  try {
+    const url = new URL(canonical);
+    return url.pathname === "/" ? "/" : url.pathname.replace(/\/$/, "");
+  } catch {
+    return "";
+  }
+}
+
+function breadcrumbLd(route, headline) {
+  const items = [
+    { name: "Home", item: `${SITE}/` },
+  ];
+  if (route.startsWith("/consumer/")) {
+    items.push({ name: "Consumer", item: `${SITE}/consumer` });
+  } else if (route.startsWith("/articles/")) {
+    items.push({ name: "Newsroom", item: `${SITE}/newsroom` });
+  }
+  items.push({ name: headline, item: `${SITE}${route}` });
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.item,
+    })),
+  };
 }
 
 function processGuide(distDir, slug, opts) {
@@ -96,18 +143,28 @@ function processGuide(distDir, slug, opts) {
 
   const headline = stripBrand(raw.title);
   const imageArr = raw.ogImage ? [raw.ogImage] : [];
+  const route = routeFromCanonical(raw.canonical);
+  const pageMeta = seoPageMeta.pages?.[route] || {};
+
+  if (!isArticles && pageMeta.type !== "CollectionPage") html = ensurePublishedMetaForDate(html, pageMeta.published);
 
   let datePublished;
   if (newsroomSlug && articleMeta[newsroomSlug]?.date) {
     datePublished = `${articleMeta[newsroomSlug].date}T09:00:00+01:00`;
+  } else if (pageMeta.published) {
+    datePublished = `${pageMeta.published}T09:00:00+01:00`;
   }
 
-  const dateModified = fs.statSync(fp).mtime.toISOString().replace(/\.\d{3}Z$/, "Z");
+  const dateModified = pageMeta.modified
+    ? `${pageMeta.modified}T09:00:00+01:00`
+    : fs.statSync(fp).mtime.toISOString().replace(/\.\d{3}Z$/, "Z");
+  const schemaType = pageMeta.type === "CollectionPage" ? "CollectionPage" : "Article";
 
   /** @type {Record<string, unknown>} */
   const articleLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": schemaType,
+    ...(schemaType === "CollectionPage" ? { name: headline } : {}),
     headline,
     description: raw.description || headline,
     inLanguage: "en-GB",
@@ -136,10 +193,11 @@ function processGuide(distDir, slug, opts) {
     ...(datePublished ? { datePublished } : {}),
   };
 
-  const section = newsroomSlug && articleMeta[newsroomSlug]?.topic;
+  const section = (newsroomSlug && articleMeta[newsroomSlug]?.topic) || pageMeta.topic;
   if (section) articleLd.articleSection = section;
 
-  html = injectLd(html, articleLd);
+  html = injectLd(html, "resolutor-structured-data", articleLd);
+  if (route) html = injectLd(html, "resolutor-breadcrumb-data", breadcrumbLd(route, headline));
   fs.writeFileSync(fp, html, "utf8");
   console.log("SEO structured data:", path.relative(dist, fp));
 }

@@ -6,7 +6,7 @@
       "type": "article",
       "topic": "Court and disputes",
       "date": "2025-12-03",
-      "image": "https://images.pexels.com/photos/5669602/pexels-photo-5669602.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "image": "/assets/insights-featured.jpg",
       "featured": false
     },
     {
@@ -15,7 +15,7 @@
       "type": "article",
       "topic": "Court and disputes",
       "date": "2025-08-29",
-      "image": "https://images.pexels.com/photos/6077422/pexels-photo-6077422.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "image": "/assets/insights-featured.jpg",
       "featured": false
     },
     {
@@ -24,7 +24,7 @@
       "type": "article",
       "topic": "Consumer rights",
       "date": "2025-05-08",
-      "image": "https://images.pexels.com/photos/5076512/pexels-photo-5076512.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "image": "/assets/insights-thumb-1.jpg",
       "featured": false
     },
     {
@@ -33,7 +33,7 @@
       "type": "article",
       "topic": "Mediation and early resolution",
       "date": "2025-03-22",
-      "image": "https://images.pexels.com/photos/7876093/pexels-photo-7876093.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "image": "/assets/og-consumer-equestrian.png",
       "featured": false
     },
     {
@@ -42,7 +42,7 @@
       "type": "article",
       "topic": "Yard and livery",
       "date": "2025-01-17",
-      "image": "https://images.pexels.com/photos/7567600/pexels-photo-7567600.jpeg",
+      "image": "/assets/og-consumer-equestrian.png",
       "featured": true
     }
   ]

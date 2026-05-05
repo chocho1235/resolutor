@@ -1,0 +1,241 @@
+{
+  "defaults": {
+    "modified": "2026-05-04",
+    "reviewed": "May 2026"
+  },
+  "pages": {
+    "/": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04"
+    },
+    "/about": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04"
+    },
+    "/pricing": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04"
+    },
+    "/careers": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04"
+    },
+    "/consumer": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04"
+    },
+    "/newsroom": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04"
+    },
+    "/articles/small-claims-court": {
+      "published": "2025-12-03",
+      "modified": "2026-05-04"
+    },
+    "/articles/county-court": {
+      "published": "2025-08-29",
+      "modified": "2026-05-04"
+    },
+    "/articles/ebay-facebook-marketplace-rights": {
+      "published": "2025-05-08",
+      "modified": "2026-05-04"
+    },
+    "/articles/lba-first-steps-equestrian": {
+      "published": "2025-03-22",
+      "modified": "2026-05-04"
+    },
+    "/articles/pre-action-yard-livery": {
+      "published": "2025-01-17",
+      "modified": "2026-05-04"
+    },
+    "/consumer/small-claims": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "CollectionPage",
+      "topic": "Small claims"
+    },
+    "/consumer/online-shopping-rights": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "CollectionPage",
+      "topic": "Online shopping rights"
+    },
+    "/consumer/equestrian-disputes": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "CollectionPage",
+      "topic": "Equestrian disputes"
+    },
+    "/consumer/buying-horse-auction-consumer-rights": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Equestrian disputes"
+    },
+    "/consumer/company-stopped-trading": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/consumer-rights-act-horses": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Equestrian disputes"
+    },
+    "/consumer/deposits-when-refundable": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/dry-cleaner-clothes": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/enforce-county-court-judgment": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Small claims"
+    },
+    "/consumer/fake-counterfeit-goods": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/formal-complaint-letter-gets-response": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Complaint and dispute process"
+    },
+    "/consumer/horse-injury-on-your-land-liability": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Equestrian disputes"
+    },
+    "/consumer/how-to-begin-proceedings-small-claims-court": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Small claims"
+    },
+    "/consumer/if-retailer-refuses-price-match": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Online shopping rights"
+    },
+    "/consumer/letter-before-action-ai-risks": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Complaint and dispute process"
+    },
+    "/consumer/loaning-a-horse-liability-agreements": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Equestrian disputes"
+    },
+    "/consumer/ombudsman-schemes-explained": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Complaint and dispute process"
+    },
+    "/consumer/online-goods-not-as-described": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Online shopping rights"
+    },
+    "/consumer/order-not-arrived": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Online shopping rights"
+    },
+    "/consumer/poor-service": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/product-causes-damage": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/refund-card-paypal": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Online shopping rights"
+    },
+    "/consumer/return-faulty-goods": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/stolen-goods": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/warranty-guarantee-claim": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    },
+    "/consumer/what-happens-small-claims-hearing": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Small claims"
+    },
+    "/consumer/wrong-advertised-price": {
+      "published": "2026-05-04",
+      "modified": "2026-05-04",
+      "reviewed": "May 2026",
+      "type": "Article",
+      "topic": "Consumer rights"
+    }
+  }
+}

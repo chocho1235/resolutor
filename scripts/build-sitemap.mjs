@@ -5,11 +5,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadSeoPageMeta } from "./seo-meta-utils.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const dist = path.join(root, "dist");
 const SITE = (process.env.SITE_ORIGIN || "https://www.resolutor.co.uk").replace(/\/$/, "");
+const seoPageMeta = loadSeoPageMeta(root);
 
 /** @returns {string} YYYY-MM-DD */
 function mtimeIsoDate(filePath) {
@@ -18,6 +20,10 @@ function mtimeIsoDate(filePath) {
   } catch {
     return new Date().toISOString().slice(0, 10);
   }
+}
+
+function metadataDate(locPath, filePath) {
+  return seoPageMeta.pages?.[locPath]?.modified || seoPageMeta.pages?.[locPath]?.published || mtimeIsoDate(filePath);
 }
 
 /**
@@ -103,7 +109,7 @@ const urlXml = entries
 
     return `  <url>
     <loc>${escapeXml(e.loc)}</loc>
-    <lastmod>${mtimeIsoDate(e.file)}</lastmod>
+    <lastmod>${metadataDate(new URL(e.loc).pathname, e.file)}</lastmod>
     <changefreq>${escapeXml(e.changefreq)}</changefreq>
     <priority>${escapeXml(e.priority)}</priority>${imageBlock}
   </url>`;

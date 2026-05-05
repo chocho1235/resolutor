@@ -1,5 +1,5 @@
 /**
- * Shared head-tag helpers for SEO (Open Graph sizing, Newsroom dates).
+ * Shared head-tag helpers for SEO (Open Graph sizing, published dates and page metadata).
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -18,6 +18,19 @@ export function loadArticleMeta(rootDir) {
   return out;
 }
 
+/** @returns {{ defaults?: Record<string, string>, pages: Record<string, Record<string, string>> }} */
+export function loadSeoPageMeta(rootDir) {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(path.join(rootDir, "public/seo-pages.json"), "utf8"));
+    return {
+      defaults: parsed.defaults || {},
+      pages: parsed.pages || {},
+    };
+  } catch {
+    return { defaults: {}, pages: {} };
+  }
+}
+
 /**
  * @param {string} html
  * @param {string} slug
@@ -28,6 +41,21 @@ export function ensureArticlePublishedMeta(html, slug, articleMeta) {
   if (!meta?.date) return html;
   if (/property=["']article:published_time["']/i.test(html)) return html;
   const t = `${meta.date}T09:00:00+01:00`;
+  if (/property=["']og:url["']/i.test(html)) {
+    return html.replace(
+      /(<meta\s+property=["']og:url["']\s+content=["'][^"']+["']\s*\/?>)/i,
+      `$1\n    <meta property="article:published_time" content="${t}" />`,
+    );
+  }
+  return html.replace(
+    /(<link\s+rel=["']canonical["']\s+href=["'][^"']+["']\s*\/?>)/i,
+    `$1\n    <meta property="article:published_time" content="${t}" />`,
+  );
+}
+
+export function ensurePublishedMetaForDate(html, date) {
+  if (!date || /property=["']article:published_time["']/i.test(html)) return html;
+  const t = `${date}T09:00:00+01:00`;
   if (/property=["']og:url["']/i.test(html)) {
     return html.replace(
       /(<meta\s+property=["']og:url["']\s+content=["'][^"']+["']\s*\/?>)/i,

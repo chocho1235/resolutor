@@ -3764,6 +3764,14 @@ main {
   color: var(--grey-meta);
 }
 
+.consumer-guide__review {
+  margin: 0 0 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--kelly-deep);
+}
+
 .consumer-guide__meta-row {
   list-style: none;
   margin: 0;
@@ -3964,6 +3972,49 @@ main {
   font-size: clamp(0.9rem, 0.22vw + 0.84rem, 0.98rem);
   line-height: 1.58;
   color: var(--grey-body);
+}
+
+.consumer-guide__callout-text + .consumer-guide__callout-text {
+  margin-top: 0.4rem;
+}
+
+.consumer-guide__related {
+  margin-top: clamp(1.6rem, 3vw, 2rem);
+  padding: clamp(1rem, 2vw, 1.2rem);
+  border: 1px solid rgba(2, 6, 23, 0.08);
+  border-radius: 12px;
+  background: rgba(2, 6, 23, 0.025);
+}
+
+.consumer-guide__related-title {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--green-dark);
+}
+
+.consumer-guide__related-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.consumer-guide__related-list a {
+  color: var(--kelly-deep);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.consumer-guide__related-list a:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .consumer-guide__letter-sample {
