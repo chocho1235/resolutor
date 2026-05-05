@@ -48,33 +48,12 @@
       "published": "2025-01-17",
       "modified": "2026-05-04"
     },
-    "/consumer/small-claims": {
-      "published": "2026-05-04",
-      "modified": "2026-05-04",
-      "reviewed": "May 2026",
-      "type": "CollectionPage",
-      "topic": "Small claims"
-    },
-    "/consumer/online-shopping-rights": {
-      "published": "2026-05-04",
-      "modified": "2026-05-04",
-      "reviewed": "May 2026",
-      "type": "CollectionPage",
-      "topic": "Online shopping rights"
-    },
-    "/consumer/equestrian-disputes": {
-      "published": "2026-05-04",
-      "modified": "2026-05-04",
-      "reviewed": "May 2026",
-      "type": "CollectionPage",
-      "topic": "Equestrian disputes"
-    },
     "/consumer/buying-horse-auction-consumer-rights": {
       "published": "2026-05-04",
       "modified": "2026-05-04",
       "reviewed": "May 2026",
       "type": "Article",
-      "topic": "Equestrian disputes"
+      "topic": "Equestrian law"
     },
     "/consumer/company-stopped-trading": {
       "published": "2026-05-04",
@@ -88,7 +67,7 @@
       "modified": "2026-05-04",
       "reviewed": "May 2026",
       "type": "Article",
-      "topic": "Equestrian disputes"
+      "topic": "Equestrian law"
     },
     "/consumer/deposits-when-refundable": {
       "published": "2026-05-04",
@@ -130,7 +109,7 @@
       "modified": "2026-05-04",
       "reviewed": "May 2026",
       "type": "Article",
-      "topic": "Equestrian disputes"
+      "topic": "Equestrian law"
     },
     "/consumer/how-to-begin-proceedings-small-claims-court": {
       "published": "2026-05-04",
@@ -144,7 +123,7 @@
       "modified": "2026-05-04",
       "reviewed": "May 2026",
       "type": "Article",
-      "topic": "Online shopping rights"
+      "topic": "Online purchases"
     },
     "/consumer/letter-before-action-ai-risks": {
       "published": "2026-05-04",
@@ -158,7 +137,7 @@
       "modified": "2026-05-04",
       "reviewed": "May 2026",
       "type": "Article",
-      "topic": "Equestrian disputes"
+      "topic": "Equestrian law"
     },
     "/consumer/ombudsman-schemes-explained": {
       "published": "2026-05-04",
@@ -172,14 +151,14 @@
       "modified": "2026-05-04",
       "reviewed": "May 2026",
       "type": "Article",
-      "topic": "Online shopping rights"
+      "topic": "Online purchases"
     },
     "/consumer/order-not-arrived": {
       "published": "2026-05-04",
       "modified": "2026-05-04",
       "reviewed": "May 2026",
       "type": "Article",
-      "topic": "Online shopping rights"
+      "topic": "Online purchases"
     },
     "/consumer/poor-service": {
       "published": "2026-05-04",
@@ -200,7 +179,7 @@
       "modified": "2026-05-04",
       "reviewed": "May 2026",
       "type": "Article",
-      "topic": "Online shopping rights"
+      "topic": "Online purchases"
     },
     "/consumer/return-faulty-goods": {
       "published": "2026-05-04",
