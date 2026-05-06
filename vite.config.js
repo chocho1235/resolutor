@@ -82,7 +82,7 @@ function extensionlessHtmlRoutes() {
           if (ent.isDirectory()) {
             if (ent.name === "assets") continue;
             walk(full);
-          } else if (ent.name.endsWith(".html") && ent.name !== "index.html") {
+          } else if (ent.name.endsWith(".html") && ent.name !== "index.html" && ent.name !== "404.html") {
             const base = ent.name.slice(0, -5);
             const targetDir = path.join(dir, base);
             fs.mkdirSync(targetDir, { recursive: true });
@@ -106,6 +106,7 @@ export default defineConfig({
         pricing: path.resolve(__dirname, "pricing.html"),
         careers: path.resolve(__dirname, "careers.html"),
         contact: path.resolve(__dirname, "contact.html"),
+        notFound: path.resolve(__dirname, "404.html"),
         consumer: path.resolve(__dirname, "consumer.html"),
         newsroom: path.resolve(__dirname, "newsroom.html"),
         login: path.resolve(__dirname, "login.html"),
